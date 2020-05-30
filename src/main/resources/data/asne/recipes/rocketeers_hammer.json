@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "S  ",
+    " I ",
+    "K S"
+  ],
+  "key" : {
+    "K": {
+      "item": "minecraft:stick"
+    },
+    "S": {
+      "item": "minecraft:stone"
+    },
+    "I": {
+      "item": "minecraft:iron_block"
+    }
+  },
+  "result": {
+    "item": "asne:rocketeers_hammer",
+    "count": 1
+  }
+}

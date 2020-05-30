@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TTT",
+    "SIS",
+    "SSS"
+  ],
+  "key" : {
+    "T": {
+      "item": "minecraft:crafting_table"
+    },
+    "S": {
+      "item": "minecraft:stone"
+    },
+    "I": {
+      "item": "minecraft:iron_block"
+    }
+  },
+  "result": {
+    "item": "asne:rocketeers_crafting_table",
+    "count": 1
+  }
+}

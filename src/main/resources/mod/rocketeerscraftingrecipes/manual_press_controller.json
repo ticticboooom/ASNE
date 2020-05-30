@@ -1,0 +1,36 @@
+{
+  "items": [
+    "minecraft:stone",
+    "minecraft:stone",
+    "minecraft:stone",
+    "minecraft:stone",
+    "minecraft:stone",
+
+    "minecraft:stone",
+    "minecraft:iron_ingot",
+    "minecraft:iron_ingot",
+    "minecraft:iron_ingot",
+    "minecraft:stone",
+
+    "minecraft:stone",
+    "minecraft:iron_ingot",
+    "minecraft:gold_ingot",
+    "minecraft:iron_ingot",
+    "minecraft:stone",
+
+    "minecraft:stone",
+    "minecraft:iron_ingot",
+    "minecraft:iron_ingot",
+    "minecraft:iron_ingot",
+    "minecraft:stone",
+
+    "minecraft:stone",
+    "minecraft:stone",
+    "minecraft:stone",
+    "minecraft:stone",
+    "minecraft:stone"
+  ],
+  "result": "asne:manual_press_controller",
+  "resultCount": 1,
+  "isShaped": true
+}

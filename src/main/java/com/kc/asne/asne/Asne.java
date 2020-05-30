@@ -4,6 +4,7 @@ import com.kc.asne.asne.init.BlockTypes;
 import com.kc.asne.asne.init.ContainerTypes;
 import com.kc.asne.asne.init.ItemTypes;
 import com.kc.asne.asne.init.TileEntityTypes;
+import com.kc.asne.asne.util.parser.RocketeersCraftingRecipeParser;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -39,7 +40,7 @@ public class Asne {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
-
+        RocketeersCraftingRecipeParser.loadRecipes();
         ItemTypes.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         BlockTypes.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
         TileEntityTypes.TILE_ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());

@@ -1,0 +1,5 @@
+{
+ "variants": {
+    "": { "model": "asne:block/manual_press_controller"}
+ }
+}

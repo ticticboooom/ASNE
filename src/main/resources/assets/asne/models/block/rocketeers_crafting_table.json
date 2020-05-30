@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "asne:blocks/machine_block_all",
+    "up": "asne:blocks/rocketeers_crafting_table_top"
+  }
+}

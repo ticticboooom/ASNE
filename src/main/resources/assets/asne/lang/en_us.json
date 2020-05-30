@@ -1,4 +1,13 @@
 {
-  "block.asne.ruby_block": "Block Of Ruby",
-  "item.asne.ruby_block": "Block Of Ruby"
+  "block.asne.rocketeers_crafting_table": "Rocketeer's Crafting Table",
+  "block.asne.manual_press_controller": "Manual Press controller",
+
+  "item.asne.rocketeers_crafting_table": "Rocketeer's Crafting Table",
+  "item.asne.rocketeers_hammer": "Rocketeer's Hammer",
+  "item.asne.manual_press_controller": "Manual Press Controller",
+
+  "container.asne.rocketeers_crafting_table": "Rocketeer's Crafting Table",
+
+  "itemGroup.asne_blocks": "ASNE Blocks",
+  "itemGroup.asne_items": "ASNE Items"
 }
