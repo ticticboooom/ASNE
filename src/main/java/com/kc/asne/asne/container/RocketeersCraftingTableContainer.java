@@ -6,11 +6,10 @@ import com.kc.asne.asne.init.BlockTypes;
 import com.kc.asne.asne.init.ContainerTypes;
 import com.kc.asne.asne.tileentity.RocketeersCraftingTableTileEntity;
 import com.kc.asne.asne.util.parser.RocketeersCraftingRecipe;
-import com.kc.asne.asne.util.parser.RocketeersCraftingRecipeParser;
+import com.kc.asne.asne.util.parser.CustomParser;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.IContainerListener;
 import net.minecraft.inventory.container.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -21,11 +20,8 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import java.util.function.Function;
 
 public class RocketeersCraftingTableContainer extends Container {
     public final RocketeersCraftingTableTileEntity tileEntity;
@@ -34,7 +30,7 @@ public class RocketeersCraftingTableContainer extends Container {
     private Slot outPutSlot;
 
     public RocketeersCraftingTableContainer(final int windowId, final PlayerInventory playerInventory, final RocketeersCraftingTableTileEntity tileEntity) {
-        super(ContainerTypes.ROCKETEERS_CRAFTING_TABLE_CONTAINER.get(), windowId);
+        super(ContainerTypes.ROCKETEERS_CRAFTING_TABLE.get(), windowId);
         this.tileEntity = tileEntity;
         this.canInteractWithCallable = IWorldPosCallable.of(tileEntity.getWorld(), tileEntity.getPos());
 
@@ -79,8 +75,8 @@ public class RocketeersCraftingTableContainer extends Container {
     private void computeRecipes() {
         NonNullList<ItemStack> items = tileEntity.getItems();
         RocketeersCraftingRecipe chosenRecipe = null;
-        for (int r = 0; r < RocketeersCraftingRecipeParser.recipes.size(); r++) {
-            RocketeersCraftingRecipe configRecipe = RocketeersCraftingRecipeParser.recipes.get(r);
+        for (int r = 0; r < CustomParser.recipes.size(); r++) {
+            RocketeersCraftingRecipe configRecipe = CustomParser.recipes.get(r);
             boolean isCorrect = true;
             for (int i = 0; i < 25; i++) {
                 String itemResourceName = items.get(i).getItem().getRegistryName().toString();

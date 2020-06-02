@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "asne:raw_silicon"
+  },
+  "result": "asne:silicon",
+  "experience": 0.25,
+  "cookingTime": "200"
+}

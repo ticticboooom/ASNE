@@ -1,0 +1,5 @@
+{
+  "in": "asne:unpressed_basic_processor",
+  "ticks": 200,
+  "out": "asne:basic_processor"
+}

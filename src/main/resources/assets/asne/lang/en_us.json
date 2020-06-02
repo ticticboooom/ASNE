@@ -1,12 +1,15 @@
 {
   "block.asne.rocketeers_crafting_table": "Rocketeer's Crafting Table",
-  "block.asne.manual_press_controller": "Manual Press controller",
+  "block.asne.manual_press_controller": "Manual Press Controller",
 
   "item.asne.rocketeers_crafting_table": "Rocketeer's Crafting Table",
   "item.asne.rocketeers_hammer": "Rocketeer's Hammer",
   "item.asne.manual_press_controller": "Manual Press Controller",
+  "item.asne.silicon": "Silicon",
+  "item.asne.raw_silicon": "Raw Silicon",
 
   "container.asne.rocketeers_crafting_table": "Rocketeer's Crafting Table",
+  "container.asne.manual_press": "Manual Press",
 
   "itemGroup.asne_blocks": "ASNE Blocks",
   "itemGroup.asne_items": "ASNE Items"

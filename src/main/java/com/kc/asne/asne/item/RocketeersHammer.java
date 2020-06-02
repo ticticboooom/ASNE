@@ -1,18 +1,17 @@
 package com.kc.asne.asne.item;
 
-import com.kc.asne.asne.block.RocketeersCraftingTableBlock;
+import com.kc.asne.asne.block.ManualPressControllerBlock;
 import com.kc.asne.asne.init.BlockTypes;
 import com.kc.asne.asne.init.ItemGroupTypes;
+import com.kc.asne.asne.tileentity.ManualPressTileEntity;
+import com.kc.asne.asne.util.parser.*;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.state.DirectionProperty;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockRayTraceResult;
-import net.minecraft.util.math.RayTraceContext;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3i;
+import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 
 public class RocketeersHammer extends Item {
@@ -32,29 +31,34 @@ public class RocketeersHammer extends Item {
             worldIn.removeBlock(result.getPos(), false);
             worldIn.setBlockState(result.getPos(), BlockTypes.ROCKETEERS_CRAFTING_TABLE.get().getDefaultState());
             worldIn.playSound(playerIn, playerIn.getPosition(), SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.PLAYERS, 1.0f, worldIn.rand.nextFloat());
-        } else if (block.getRegistryName().toString().equals("asne:manual_press_controller")) {
-            BlockState rightStone = worldIn.getBlockState(result.getPos().add(new Vec3i(1, 0, 0)));
-            BlockState leftStone = worldIn.getBlockState(result.getPos().add(new Vec3i(-1, 0, 0)));
-            BlockState rightMidStone = worldIn.getBlockState(result.getPos().add(new Vec3i(1, 1, 0)));
-            BlockState leftMidStone = worldIn.getBlockState(result.getPos().add(new Vec3i(-1, 1, 0)));
-            BlockState rightTopStone = worldIn.getBlockState(result.getPos().add(new Vec3i(1, 2, 0)));
-            BlockState leftTopStone = worldIn.getBlockState(result.getPos().add(new Vec3i(-1, 2, 0)));
-            BlockState topPiston = worldIn.getBlockState(result.getPos().add(new Vec3i(0, 2, 0)));
-            if (getRegistryName(rightStone).equals("minecraft:stone") &&
-                    getRegistryName(leftStone).equals("minecraft:stone") &&
-                    getRegistryName(topPiston).equals("minecraft:piston") &&
-                    getRegistryName(rightMidStone).equals("minecraft:stone") &&
-                    getRegistryName(leftMidStone).equals("minecraft:stone") &&
-                    getRegistryName(leftTopStone).equals("minecraft:stone") &&
-                    getRegistryName(rightTopStone).equals("minecraft:stone")){
+        }
+        if (block instanceof ManualPressControllerBlock) {
+            boolean canCreate = true;
+            MultiBlock mb = CustomParser.multiBlocks.get(block.getRegistryName().toString());
+            for (int formationIndex = 0; formationIndex < mb.formations.size(); formationIndex++) {
+                canCreate = true;
+                MultiBlocksFormation formation = mb.formations.get(formationIndex);
+                blockLoop:
+                for (int blockIndex = 0; blockIndex < formation.blocks.size(); blockIndex++) {
+                    MultiBlockFormationBlock formationBlock = formation.blocks.get(blockIndex);
+                    for (int positionIndex = 0; positionIndex < formationBlock.positions.size(); positionIndex++) {
+                        Position position = formationBlock.positions.get(positionIndex);
+                        BlockPos blockPos = result.getPos().add(new Vec3i(position.x, position.y, position.z));
+                        String regName = worldIn.getBlockState(blockPos).getBlock().getRegistryName().toString();
+                        if (!regName.equals(formationBlock.type)) {
+                            canCreate = false;
+                            break blockLoop;
+                        }
+                    }
+                }
+            }
+            if (canCreate) {
                 worldIn.playSound(playerIn, playerIn.getPosition(), SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.PLAYERS, 1.0f, worldIn.rand.nextFloat());
+                TileEntity tile = worldIn.getTileEntity(result.getPos());
+                ManualPressTileEntity manualPressTileEntity = (ManualPressTileEntity)tile;
+                manualPressTileEntity.isConstructed = true;
             }
         }
         return super.onItemRightClick(worldIn, playerIn, handIn);
     }
-
-    private String getRegistryName(BlockState state) {
-        return state.getBlock().getRegistryName().toString();
-    }
-
 }

@@ -5,6 +5,7 @@ import com.kc.asne.asne.init.TileEntityTypes;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.LockableLootTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
@@ -57,4 +58,5 @@ public class RocketeersCraftingTableTileEntity extends LockableLootTileEntity {
     public int getSizeInventory() {
         return 26;
     }
+
 }

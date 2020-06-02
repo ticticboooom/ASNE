@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "asne:items/pressed_gold_sheet"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "minecraft:quartz"
+  },
+  "result": "asne:raw_silicon",
+  "experience": 0.25,
+  "cookingTime": "200"
+}

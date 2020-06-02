@@ -1,0 +1,36 @@
+{
+  "items": [
+    "asne:silicon",
+    "asne:gold_wire",
+    "asne:silicon",
+    "asne:gold_wire",
+    "asne:silicon",
+
+    "asne:gold_wire",
+    "asne:pressed_iron_sheet",
+    "asne:pressed_iron_sheet",
+    "asne:pressed_iron_sheet",
+    "asne:gold_wire",
+
+    "asne:silicon",
+    "asne:pressed_iron_sheet",
+    "asne:pressed_gold_sheet",
+    "asne:pressed_iron_sheet",
+    "asne:silicon",
+
+    "asne:gold_wire",
+    "asne:pressed_iron_sheet",
+    "asne:pressed_iron_sheet",
+    "asne:pressed_iron_sheet",
+    "asne:gold_wire",
+
+    "asne:silicon",
+    "asne:gold_wire",
+    "asne:silicon",
+    "asne:gold_wire",
+    "asne:silicon"
+  ],
+  "result": "asne:raw_basic_processor",
+  "resultCount": 1,
+  "isShaped": true
+}

@@ -4,12 +4,14 @@ import com.kc.asne.asne.init.BlockTypes;
 import com.kc.asne.asne.init.ContainerTypes;
 import com.kc.asne.asne.init.ItemTypes;
 import com.kc.asne.asne.init.TileEntityTypes;
-import com.kc.asne.asne.util.parser.RocketeersCraftingRecipeParser;
+import com.kc.asne.asne.net.PacketHandler;
+import com.kc.asne.asne.util.parser.CustomParser;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DeferredWorkQueue;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -40,19 +42,21 @@ public class Asne {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::processIMC);
         // Register the doClientStuff method for modloading
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
-        RocketeersCraftingRecipeParser.loadRecipes();
+        CustomParser.loadAll();
         ItemTypes.ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
         BlockTypes.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
         TileEntityTypes.TILE_ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
         ContainerTypes.CONTAINER_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+
     }
 
     private void setup(final FMLCommonSetupEvent event) {
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
-        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
+        PacketHandler.register();
+
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {

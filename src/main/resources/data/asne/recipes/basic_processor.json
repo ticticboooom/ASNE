@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "asne:raw_basic_processor"
+  },
+  "result": "asne:unpressed_basic_processor",
+  "experience": 0.25,
+  "cookingTime": 200
+}
