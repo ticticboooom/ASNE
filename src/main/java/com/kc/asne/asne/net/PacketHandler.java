@@ -1,17 +1,12 @@
 package com.kc.asne.asne.net;
 
 import com.kc.asne.asne.Asne;
-import com.kc.asne.asne.net.packets.ManualPressProcessPacket;
-import net.minecraft.entity.player.PlayerEntity;
+import com.kc.asne.asne.net.packets.ManualPressTileSyncPacket;
 import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.network.NetworkManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.network.NetworkDirection;
 import net.minecraftforge.fml.network.NetworkRegistry;
-import net.minecraftforge.fml.network.PacketDistributor;
 import net.minecraftforge.fml.network.simple.SimpleChannel;
-
-import java.util.Optional;
 
 public class PacketHandler {
     private static final String PROTOCOL_VERSION = Integer.toString(1);
@@ -25,7 +20,11 @@ public class PacketHandler {
     public static void register() {
         int disc = 0;
 
-        HANDLER.registerMessage(disc++, ManualPressProcessPacket.class, ManualPressProcessPacket::encode, ManualPressProcessPacket::decode, ManualPressProcessPacket.Handler::handle);
+        HANDLER.registerMessage(disc++, ManualPressTileSyncPacket.class, ManualPressTileSyncPacket::encode, ManualPressTileSyncPacket::decode, ManualPressTileSyncPacket.Handler::handle);
 
+    }
+
+    public static void sendTo(Object msg, ServerPlayerEntity player) {
+        HANDLER.sendTo(msg, player.connection.getNetworkManager(), NetworkDirection.PLAY_TO_CLIENT);
     }
 }

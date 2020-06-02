@@ -18,6 +18,7 @@ public class ItemTypes {
     public static final RegistryObject<Item> ROCKETEERS_HAMMER = ITEMS.register("rocketeers_hammer", RocketeersHammer::new);
     public static final RegistryObject<Item> ROCKETEERS_CRAFTING_TABLE = ITEMS.register("rocketeers_crafting_table", () -> new BlockItem(BlockTypes.ROCKETEERS_CRAFTING_TABLE.get(),  new Item.Properties().group(ItemGroupTypes.BLOCKS_TAB)));
     public static final RegistryObject<Item> MANUAL_PRESS_CONTROLLLER = ITEMS.register("manual_press_controller", () -> new BlockItem(BlockTypes.MANUAL_PRESS_CONTROLLER.get(),  new Item.Properties().group(ItemGroupTypes.BLOCKS_TAB)));
+    public static final RegistryObject<Item> MACHINE_STRUCTURE = ITEMS.register("machine_structure", () -> new BlockItem(BlockTypes.MACHINE_STRUCTURE.get(),  new Item.Properties().group(ItemGroupTypes.BLOCKS_TAB)));
     public static final RegistryObject<Item> RAW_SILICON = ITEMS.register("raw_silicon", () -> new AsneItem(new Item.Properties()));
     public static final RegistryObject<Item> SILICON = ITEMS.register("silicon", () -> new AsneItem(new Item.Properties()));
     public static final RegistryObject<Item> RAW_BASIC_PROCESSOR = ITEMS.register("raw_basic_processor", () -> new AsneItem(new Item.Properties()));

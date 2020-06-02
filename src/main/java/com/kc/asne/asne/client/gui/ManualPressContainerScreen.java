@@ -1,31 +1,11 @@
 package com.kc.asne.asne.client.gui;
 
 import com.kc.asne.asne.Asne;
-import com.kc.asne.asne.client.gui.elements.ManualPressProcessActionButton;
 import com.kc.asne.asne.container.ManualPressContainer;
-import com.kc.asne.asne.net.PacketHandler;
-import com.kc.asne.asne.net.packets.ManualPressProcessPacket;
-import com.kc.asne.asne.tileentity.ManualPressTileEntity;
 import com.kc.asne.base.client.gui.AsneContainerScreen;
-import com.kc.asne.base.client.gui.components.button.ActionButton;
-import com.kc.asne.base.tileentity.AsneMachineTileEntity;
-import com.mojang.blaze3d.systems.RenderSystem;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.client.gui.widget.button.Button;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.gui.MinecraftServerGui;
-import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.loading.FMLEnvironment;
 
 public class ManualPressContainerScreen extends AsneContainerScreen<ManualPressContainer> {
     public ManualPressContainerScreen(ManualPressContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {

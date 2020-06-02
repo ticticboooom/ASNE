@@ -22,15 +22,12 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class ManualPressContainer extends AsneMachineContainer<ManualPressTileEntity> {
-
-
     public ManualPressOutputSlot outputSlot;
     public ManualPressInputSlot inputSlot;
     public ManualPressFuelInputSlot fuelInputSlot;
 
     public ManualPressContainer(final int windowId, final PlayerInventory playerInventory, final ManualPressTileEntity tileEntity) {
         super(windowId, playerInventory, tileEntity, ContainerTypes.MANUAL_PRESS.get(), BlockTypes.MANUAL_PRESS_CONTROLLER.get());
-        tileEntity.cont = this;
         inputSlot = new ManualPressInputSlot(tileEntity, 0, 50, 18);
         this.addSlot(inputSlot);
         outputSlot = new ManualPressOutputSlot(playerInventory.player, tileEntity, 2, 117, 35);

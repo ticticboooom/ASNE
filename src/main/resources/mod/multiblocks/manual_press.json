@@ -11,18 +11,13 @@
     {
       "blocks": [
         {
-          "type": "minecraft:piston",
+          "type": "asne:machine_structure",
           "positions": [
             {
               "x": 0,
               "y": 2,
               "z": 0
-            }
-          ]
-        },
-        {
-          "type": "minecraft:stone",
-          "positions": [
+            },
             {
               "x": 1,
               "y": 0,
@@ -60,18 +55,13 @@
     {
       "blocks": [
         {
-          "type": "minecraft:piston",
+          "type": "asne:machine_structure",
           "positions": [
             {
               "x": 0,
               "y": 2,
               "z": 0
-            }
-          ]
-        },
-        {
-          "type": "minecraft:stone",
-          "positions": [
+            },
             {
               "x": 0,
               "y": 0,

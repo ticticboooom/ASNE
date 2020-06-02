@@ -1,8 +1,11 @@
 package com.kc.asne.asne.block;
 
 import com.kc.asne.asne.init.TileEntityTypes;
+import com.kc.asne.asne.multiblock.MultiBlockHelper;
 import com.kc.asne.asne.tileentity.ManualPressTileEntity;
+import com.kc.asne.asne.util.parser.MultiBlock;
 import com.kc.asne.base.block.AsneBlock;
+import com.kc.asne.base.block.AsneMultiBlockControllerBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
@@ -19,7 +22,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
 
 
-public class ManualPressControllerBlock extends AsneBlock {
+public class ManualPressControllerBlock extends AsneMultiBlockControllerBlock {
     public ManualPressControllerBlock() {
         super(Block.Properties.create(Material.IRON));
     }
@@ -39,14 +42,11 @@ public class ManualPressControllerBlock extends AsneBlock {
         if (!worldIn.isRemote){
             TileEntity tile = worldIn.getTileEntity(pos);
             if (tile instanceof ManualPressTileEntity) {
-                ManualPressTileEntity manualPressTileEntity = (ManualPressTileEntity)tile;
-                if (manualPressTileEntity.isConstructed) {
-                    NetworkHooks.openGui((ServerPlayerEntity)player, manualPressTileEntity, buf -> buf.writeBlockPos(pos));
+                if (((ManualPressTileEntity)tile).isConstructed) {
+                    NetworkHooks.openGui((ServerPlayerEntity)player, (ManualPressTileEntity)tile, buf -> buf.writeBlockPos(pos));
                     return ActionResultType.SUCCESS;
                 }
             }
-
-
         }
         return ActionResultType.FAIL;
     }
@@ -56,7 +56,9 @@ public class ManualPressControllerBlock extends AsneBlock {
         if (state.getBlock() != newState.getBlock()) {
             TileEntity te = worldIn.getTileEntity(pos);
             if (te instanceof ManualPressTileEntity) {
-                InventoryHelper.dropItems(worldIn, pos, ((ManualPressTileEntity)te).getItems());
+                ManualPressTileEntity manualPressTileEntity = (ManualPressTileEntity)te;
+                InventoryHelper.dropItems(worldIn, pos, manualPressTileEntity.getItems());
+                worldIn.removeTileEntity(pos);
             }
         }
     }

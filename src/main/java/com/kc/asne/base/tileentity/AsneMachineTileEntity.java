@@ -28,6 +28,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
@@ -45,6 +46,7 @@ public abstract class AsneMachineTileEntity extends LockableLootTileEntity {
         this.containerType = containerType;
         invContents = NonNullList.withSize(getSizeInventory(), ItemStack.EMPTY);
     }
+
 
 
     protected IItemHandlerModifiable createHandler() {
@@ -143,6 +145,7 @@ public abstract class AsneMachineTileEntity extends LockableLootTileEntity {
         }
     }
 
+
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nonnull Direction side) {
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
@@ -164,5 +167,14 @@ public abstract class AsneMachineTileEntity extends LockableLootTileEntity {
     public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
         read(pkt.getNbtCompound());
         super.onDataPacket(net, pkt);
+    }
+
+
+    @Override
+    public CompoundNBT write(CompoundNBT compound) {
+        compound.putInt("x", this.pos.getX());
+        compound.putInt("y", this.pos.getY());
+        compound.putInt("z", this.pos.getZ());
+        return super.write(compound);
     }
 }

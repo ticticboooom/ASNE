@@ -5,7 +5,7 @@ import com.kc.asne.asne.init.ContainerTypes;
 import com.kc.asne.asne.init.TileEntityTypes;
 import com.kc.asne.asne.util.parser.CustomParser;
 import com.kc.asne.asne.util.parser.PressRecipe;
-import com.kc.asne.base.tileentity.AsneMachineTileEntity;
+import com.kc.asne.base.tileentity.AsneMultiBlockMachineTileEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
@@ -20,9 +20,7 @@ import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.wrapper.InvWrapper;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class ManualPressTileEntity extends AsneMachineTileEntity implements ITickableTileEntity {
-    public ManualPressContainer cont = null;
-    public boolean isConstructed = false;
+public class ManualPressTileEntity extends AsneMultiBlockMachineTileEntity implements ITickableTileEntity {
     private static final int COAL_BURN_TIME = 800;
     private float processingProgress = 0;
     private float fuelProgress = 0;
@@ -59,7 +57,9 @@ public class ManualPressTileEntity extends AsneMachineTileEntity implements ITic
     }
 
     public void incrementProgress() {
-
+        if (!canConstruct && !isConstructed){
+            return;
+        }
         if ((this.invContents.get(3).getCount() > 0 && this.invContents.get(3).isItemEqual(new ItemStack(Items.COAL))) || fuelProgress > 0) {
             if (fuelProgress > 0) {
                 fuelProgress--;
@@ -74,6 +74,7 @@ public class ManualPressTileEntity extends AsneMachineTileEntity implements ITic
         if ((this.invContents.get(0).isEmpty() && processingProgress <= 0) || recipe == null) {
             return;
         }
+
         processingProgress += 1.f / (float) recipe.ticks;
         processingProgress = MathHelper.clamp(processingProgress, 0, 1);
         if (processingProgress >= 1) {
@@ -101,24 +102,24 @@ public class ManualPressTileEntity extends AsneMachineTileEntity implements ITic
 
     @Override
     public void tick() {
+        super.tick();
         incrementProgress();
+
     }
 
     @Override
     public CompoundNBT write(CompoundNBT compound) {
         compound.putFloat("asne_fuel_progress", this.fuelProgress);
         compound.putFloat("asne_processing_progress", this.processingProgress);
-        compound.putBoolean("asne_is_constructed", this.isConstructed);
         ItemStackHelper.saveAllItems(compound, this.invContents);
         return super.write(compound);
     }
 
     @Override
     public void read(CompoundNBT compound) {
+        super.read(compound);
         this.fuelProgress = compound.getFloat("asne_fuel_progress");
         this.processingProgress = compound.getFloat("asne_processing_progress");
-        this.isConstructed = compound.getBoolean("asne_is_constructed");
         ItemStackHelper.loadAllItems(compound, this.invContents);
-        super.read(compound);
     }
 }

@@ -23,7 +23,7 @@ public class AsneScreenLargeOutputSlot extends AsneScreenSlot {
 
     @Override
     protected Vec2i getEdgeOffset() {
-        return new Vec2i(4, 4);
+        return new Vec2i(5, 5);
     }
 
     @Override
