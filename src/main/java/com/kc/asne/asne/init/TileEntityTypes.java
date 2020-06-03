@@ -5,15 +5,18 @@ import com.kc.asne.asne.block.ManualPressControllerBlock;
 import com.kc.asne.asne.tileentity.MachineStructureTileEntity;
 import com.kc.asne.asne.tileentity.ManualPressTileEntity;
 import com.kc.asne.asne.tileentity.RocketeersCraftingTableTileEntity;
+import com.kc.asne.asne.tileentity.SteamGeneratorTileEntity;
+import com.kc.asne.base.general.constants.AsneConstants;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class TileEntityTypes {
-    public static final DeferredRegister<TileEntityType<?>> TILE_ENTITIES = new DeferredRegister<>(ForgeRegistries.TILE_ENTITIES, Asne.MOD_ID);
+    public static final DeferredRegister<TileEntityType<?>> TILE_ENTITIES = new DeferredRegister<>(ForgeRegistries.TILE_ENTITIES, AsneConstants.MOD_ID);
 
     public static final RegistryObject<TileEntityType<RocketeersCraftingTableTileEntity>> ROCKETEERS_CRAFTING_TABLE = TILE_ENTITIES.register("rocketeers_crafting_table", () -> TileEntityType.Builder.create(RocketeersCraftingTableTileEntity::new, BlockTypes.ROCKETEERS_CRAFTING_TABLE.get()).build(null));
     public static final RegistryObject<TileEntityType<ManualPressTileEntity>> MANUAL_PRESS = TILE_ENTITIES.register("manual_press", () -> TileEntityType.Builder.create(ManualPressTileEntity::new, BlockTypes.MANUAL_PRESS_CONTROLLER.get()).build(null));
     public static final RegistryObject<TileEntityType<MachineStructureTileEntity>> MACHINE_STRUCTURE = TILE_ENTITIES.register("machine_structure", () -> TileEntityType.Builder.create(MachineStructureTileEntity::new, BlockTypes.MACHINE_STRUCTURE.get()).build(null));
+    public static final RegistryObject<TileEntityType<SteamGeneratorTileEntity>> STEAM_GENERATOR = TILE_ENTITIES.register("steam_generator", () -> TileEntityType.Builder.create(SteamGeneratorTileEntity::new, BlockTypes.STEAM_GENERATOR_CONTROLLER.get()).build(null));
 }

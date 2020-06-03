@@ -1,6 +1,8 @@
 package com.kc.asne.base.tileentity;
 
+import com.kc.asne.asne.capability.fluid.SteamGeneratorWaterTank;
 import com.kc.asne.base.block.AsneBlock;
+import com.kc.asne.base.capability.AsneFluidTank;
 import com.kc.asne.base.container.AsneMachineContainer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -27,20 +29,30 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
+import net.minecraftforge.fluids.capability.ItemFluidContainer;
+import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStackSimple;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
 import javax.annotation.Nonnull;
+import java.util.ArrayList;
 
 public abstract class AsneMachineTileEntity extends LockableLootTileEntity {
     protected final ContainerType<?> containerType;
     protected NonNullList<ItemStack> invContents;
     protected IItemHandlerModifiable items = createHandler();
-    protected LazyOptional<IItemHandlerModifiable> itemHandler = LazyOptional.of(() -> items);
-    protected int numPlayersUsing;
+    protected AsneFluidTank fluids = createFluidHandler();
 
+    protected LazyOptional<IItemHandlerModifiable> itemHandler = LazyOptional.of(() -> items);
+    protected LazyOptional<IFluidHandler> fluidHandler = LazyOptional.of(() -> fluids);
+    protected int numPlayersUsing;
     public AsneMachineTileEntity(final TileEntityType<?> typeIn, final ContainerType<?> containerType) {
         super(typeIn);
         this.containerType = containerType;
@@ -53,10 +65,13 @@ public abstract class AsneMachineTileEntity extends LockableLootTileEntity {
         return new InvWrapper(this);
     }
 
+    protected AsneFluidTank createFluidHandler() { return new SteamGeneratorWaterTank(); }
+
     @Override
     public NonNullList<ItemStack> getItems() {
         return this.invContents;
     }
+
 
     @Override
     public void setItems(NonNullList<ItemStack> itemsIn) {
@@ -75,6 +90,7 @@ public abstract class AsneMachineTileEntity extends LockableLootTileEntity {
         if (!this.checkLootAndRead(compound)) {
             ItemStackHelper.loadAllItems(compound, this.invContents);
         }
+        fluids.read(compound);
     }
 
     private void playSound(SoundEvent sound) {
@@ -130,6 +146,22 @@ public abstract class AsneMachineTileEntity extends LockableLootTileEntity {
         return 0;
     }
 
+
+    @Nonnull
+    @Override
+    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap) {
+        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            return itemHandler.cast();
+        }
+        if (cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+            return fluidHandler.cast();
+        }
+        if (cap == CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY){
+            return fluidHandler.cast();
+        }
+        return super.getCapability(cap);
+    }
+
     public static void swapContents(AsneMachineTileEntity te, AsneMachineTileEntity otherTe) {
         NonNullList<ItemStack> list = te.getItems();
         te.setItems(otherTe.getItems());
@@ -150,6 +182,9 @@ public abstract class AsneMachineTileEntity extends LockableLootTileEntity {
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nonnull Direction side) {
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return itemHandler.cast();
+        }
+        if (cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+            return fluidHandler.cast();
         }
         return super.getCapability(cap, side);
     }
@@ -175,6 +210,7 @@ public abstract class AsneMachineTileEntity extends LockableLootTileEntity {
         compound.putInt("x", this.pos.getX());
         compound.putInt("y", this.pos.getY());
         compound.putInt("z", this.pos.getZ());
+        fluids.write(compound);
         return super.write(compound);
     }
 }

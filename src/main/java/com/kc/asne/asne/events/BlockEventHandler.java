@@ -2,6 +2,7 @@ package com.kc.asne.asne.events;
 
 import com.kc.asne.asne.Asne;
 import com.kc.asne.asne.tileentity.MachineStructureTileEntity;
+import com.kc.asne.base.general.constants.AsneConstants;
 import com.kc.asne.base.tileentity.AsneMultiBlockMachineTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -10,7 +11,7 @@ import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = Asne.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = AsneConstants.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class BlockEventHandler {
     @SubscribeEvent
     public static void onBreakEvent(BlockEvent.BreakEvent event) {

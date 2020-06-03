@@ -6,6 +6,7 @@ import com.kc.asne.asne.init.ItemGroupTypes;
 import com.kc.asne.asne.multiblock.MultiBlockHelper;
 import com.kc.asne.asne.tileentity.ManualPressTileEntity;
 import com.kc.asne.asne.util.parser.*;
+import com.kc.asne.base.block.AsneMultiBlockControllerBlock;
 import com.kc.asne.base.tileentity.AsneMultiBlockMachineTileEntity;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
@@ -32,7 +33,7 @@ public class RocketeersHammer extends Item {
             worldIn.setBlockState(pos, BlockTypes.ROCKETEERS_CRAFTING_TABLE.get().getDefaultState());
             worldIn.playSound(playerIn, playerIn.getPosition(), SoundEvents.BLOCK_ANVIL_PLACE, SoundCategory.PLAYERS, 1.0f, worldIn.rand.nextFloat());
         }
-        if (block instanceof ManualPressControllerBlock) {
+        if (block instanceof AsneMultiBlockControllerBlock) {
             MultiBlockHelper.scanAndFlagMultiBlock(pos, playerIn, worldIn, block);
         }
         return super.onItemRightClick(worldIn, playerIn, handIn);

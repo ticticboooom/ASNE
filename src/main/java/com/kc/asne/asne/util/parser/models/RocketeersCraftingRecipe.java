@@ -1,4 +1,4 @@
-package com.kc.asne.asne.util.parser;
+package com.kc.asne.asne.util.parser.models;
 
 import net.minecraft.item.Item;
 import net.minecraft.util.NonNullList;

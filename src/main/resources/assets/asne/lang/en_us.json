@@ -1,12 +1,22 @@
 {
   "block.asne.rocketeers_crafting_table": "Rocketeer's Crafting Table",
   "block.asne.manual_press_controller": "Manual Press Controller",
+  "block.asne.machine_structure": "Machine Structure",
+  "block.asne.steam_generator_controller": "Steam Generator",
 
   "item.asne.rocketeers_crafting_table": "Rocketeer's Crafting Table",
   "item.asne.rocketeers_hammer": "Rocketeer's Hammer",
   "item.asne.manual_press_controller": "Manual Press Controller",
+  "item.asne.steam_generator_controller": "Steam Generator Controller",
+  "item.asne.machine_structure" : "Machine Structure",
   "item.asne.silicon": "Silicon",
   "item.asne.raw_silicon": "Raw Silicon",
+  "item.asne.raw_basic_processor" : "Basic Processor (Raw)",
+  "item.asne.unpressed_basic_processor": "Basic Processor (UnPressed)",
+  "item.asne.pressed_iron_sheet": "Pressed Iron Sheet",
+  "item.asne.pressed_gold_sheet": "Pressed Gold Sheet",
+  "item.asne.wire_cutter": "Wire Cutter",
+  "item.asne.gold_wire": "Gold Wire",
 
   "container.asne.rocketeers_crafting_table": "Rocketeer's Crafting Table",
   "container.asne.manual_press": "Manual Press",

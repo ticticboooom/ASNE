@@ -1,6 +1,4 @@
-package com.kc.asne.asne.util.parser;
-
-import net.minecraft.util.math.Vec3i;
+package com.kc.asne.asne.util.parser.models;
 
 import java.util.ArrayList;
 

@@ -5,6 +5,7 @@ import com.kc.asne.base.client.gui.AsneContainerScreen;
 import com.kc.asne.base.client.gui.IAsneScreenPart;
 import com.kc.asne.base.container.slot.IBasicProgressSlot;
 import com.kc.asne.base.container.slot.ProcessProgressSlot;
+import com.kc.asne.base.general.constants.AsneConstants;
 import jdk.internal.loader.Resource;
 import net.minecraft.util.ResourceLocation;
 
@@ -18,7 +19,7 @@ public class AsneProcessProgressBar implements IAsneScreenPart {
     }
 
     protected ResourceLocation getBarTexture() {
-        return new ResourceLocation(Asne.MOD_ID, "textures/gui/slot_parts.png");
+        return AsneConstants.RL.SLOT_PARTS_TEXTURE;
     }
 
     protected int getProgressWidth() {

@@ -1,6 +1,7 @@
 package com.kc.asne.base.client.gui.components;
 
 import com.kc.asne.asne.Asne;
+import com.kc.asne.base.general.constants.AsneConstants;
 import com.kc.asne.base.math.Vec2i;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.inventory.container.Slot;
@@ -13,7 +14,7 @@ public class AsneScreenLargeOutputSlot extends AsneScreenSlot {
 
     @Override
     protected ResourceLocation getSlotTexture() {
-        return new ResourceLocation(Asne.MOD_ID, "textures/gui/slot_parts.png");
+        return AsneConstants.RL.SLOT_PARTS_TEXTURE;
     }
 
     @Override

@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "asne:blocks/machine_block_all",
+    "north": "asne:blocks/steam_generator_front"
+  }
+}

@@ -1,6 +1,7 @@
 package com.kc.asne.asne.net.packets;
 
 import com.kc.asne.asne.tileentity.ManualPressTileEntity;
+import com.kc.asne.base.tileentity.AsneMultiBlockMachineTileEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
@@ -33,9 +34,9 @@ public class ManualPressTileSyncPacket implements IPacket {
                 int y = nbt.getInt("y");
                 int z = nbt.getInt("z");
                 TileEntity te = Minecraft.getInstance().world.getTileEntity(new BlockPos(x, y, z));
-                if (te instanceof ManualPressTileEntity) {
-                    ManualPressTileEntity manualPressTileEntity = (ManualPressTileEntity) te;
-                    manualPressTileEntity.read(nbt);
+                if (te instanceof AsneMultiBlockMachineTileEntity) {
+                    AsneMultiBlockMachineTileEntity multiBlockMachineTileEntity = (AsneMultiBlockMachineTileEntity) te;
+                    multiBlockMachineTileEntity.read(nbt);
 
                 }
             });

@@ -5,7 +5,7 @@ import com.kc.asne.asne.container.slot.RocketeersCraftingTableResultSlot;
 import com.kc.asne.asne.init.BlockTypes;
 import com.kc.asne.asne.init.ContainerTypes;
 import com.kc.asne.asne.tileentity.RocketeersCraftingTableTileEntity;
-import com.kc.asne.asne.util.parser.RocketeersCraftingRecipe;
+import com.kc.asne.asne.util.parser.models.RocketeersCraftingRecipe;
 import com.kc.asne.asne.util.parser.CustomParser;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

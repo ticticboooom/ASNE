@@ -2,6 +2,7 @@ package com.kc.asne.asne.client.gui;
 
 import com.kc.asne.asne.Asne;
 import com.kc.asne.asne.container.RocketeersCraftingTableContainer;
+import com.kc.asne.base.general.constants.AsneConstants;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
@@ -12,7 +13,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class RocketeersCraftingTableContainerScreen extends ContainerScreen<RocketeersCraftingTableContainer> {
-    private static final ResourceLocation BACKROUND_TEXTURE = new ResourceLocation(Asne.MOD_ID, "textures/gui/rocketeers_crafting_table.png");
+    private static final ResourceLocation BACKROUND_TEXTURE = AsneConstants.RL.ROCKETEERS_CRAFTING_TABLE_BACKGROUND_GUI_TEXTURE;
 
     public RocketeersCraftingTableContainerScreen(RocketeersCraftingTableContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);

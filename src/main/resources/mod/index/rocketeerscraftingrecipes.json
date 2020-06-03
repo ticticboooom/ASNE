@@ -1,0 +1,8 @@
+{
+  "paths": [
+    "machine_structure.json",
+    "manual_press_controller.json",
+    "raw_basic_processor.json",
+    "steam_generator_controller.json"
+  ]
+}

@@ -4,7 +4,7 @@ import com.kc.asne.asne.container.ManualPressContainer;
 import com.kc.asne.asne.init.ContainerTypes;
 import com.kc.asne.asne.init.TileEntityTypes;
 import com.kc.asne.asne.util.parser.CustomParser;
-import com.kc.asne.asne.util.parser.PressRecipe;
+import com.kc.asne.asne.util.parser.models.PressRecipe;
 import com.kc.asne.base.tileentity.AsneMultiBlockMachineTileEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ItemStackHelper;

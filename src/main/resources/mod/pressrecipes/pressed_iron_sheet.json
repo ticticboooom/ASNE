@@ -1,5 +1,5 @@
 {
   "in": "minecraft:iron_ingot",
   "ticks": 200,
-  "out": "minecraft:iron_block"
+  "out": "asne:pressed_iron_sheet"
 }

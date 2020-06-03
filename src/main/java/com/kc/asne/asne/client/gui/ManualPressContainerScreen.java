@@ -3,6 +3,7 @@ package com.kc.asne.asne.client.gui;
 import com.kc.asne.asne.Asne;
 import com.kc.asne.asne.container.ManualPressContainer;
 import com.kc.asne.base.client.gui.AsneContainerScreen;
+import com.kc.asne.base.general.constants.AsneConstants;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -18,7 +19,7 @@ public class ManualPressContainerScreen extends AsneContainerScreen<ManualPressC
 
     @Override
     protected ResourceLocation getBackgroundTexture() {
-        return new ResourceLocation(Asne.MOD_ID, "textures/gui/manual_press.png");
+        return AsneConstants.RL.GENERIC_MACHINE_BACKGROUND_GUI_TEXTURE;
     }
 
     @Override

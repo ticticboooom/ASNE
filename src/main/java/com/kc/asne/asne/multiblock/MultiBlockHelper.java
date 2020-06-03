@@ -1,22 +1,21 @@
 package com.kc.asne.asne.multiblock;
 
-import com.kc.asne.asne.block.ManualPressControllerBlock;
 import com.kc.asne.asne.tileentity.MachineStructureTileEntity;
-import com.kc.asne.asne.tileentity.ManualPressTileEntity;
 import com.kc.asne.asne.util.parser.*;
+import com.kc.asne.asne.util.parser.models.MultiBlock;
+import com.kc.asne.asne.util.parser.models.MultiBlockFormationBlock;
+import com.kc.asne.asne.util.parser.models.MultiBlocksFormation;
+import com.kc.asne.asne.util.parser.models.Position;
 import com.kc.asne.base.tileentity.AsneMultiBlockMachineTileEntity;
-import com.kc.asne.base.tileentity.AsneTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MultiBlockHelper {

@@ -1,4 +1,4 @@
-package com.kc.asne.asne.util.parser;
+package com.kc.asne.asne.util.parser.models;
 
 public class PressRecipe {
     public String in;

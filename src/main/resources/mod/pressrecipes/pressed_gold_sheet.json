@@ -1,0 +1,5 @@
+{
+  "in": "minecraft:gold_ingot",
+  "ticks": 200,
+  "out": "asne:pressed_gold_sheet"
+}

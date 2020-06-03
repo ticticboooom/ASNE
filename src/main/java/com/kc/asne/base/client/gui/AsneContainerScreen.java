@@ -1,16 +1,14 @@
 package com.kc.asne.base.client.gui;
 
 import com.kc.asne.asne.Asne;
-import com.kc.asne.base.client.gui.components.AsneFuelProgressBar;
-import com.kc.asne.base.client.gui.components.AsneProcessProgressBar;
-import com.kc.asne.base.client.gui.components.AsneScreenLargeOutputSlot;
-import com.kc.asne.base.client.gui.components.AsneScreenSlot;
+import com.kc.asne.base.client.gui.components.*;
+import com.kc.asne.base.client.gui.components.gauge.FluidGauge;
 import com.kc.asne.base.container.AsneMachineContainer;
 import com.kc.asne.base.container.slot.*;
+import com.kc.asne.base.general.constants.AsneConstants;
 import com.kc.asne.base.math.Vec2i;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Slot;
@@ -45,6 +43,8 @@ public class AsneContainerScreen<T extends AsneMachineContainer> extends Contain
                 renderSlots.add(new AsneProcessProgressBar(slot, this));
             } else if (slot instanceof FuelProgressSlot) {
                 renderSlots.add(new AsneFuelProgressBar(slot, this));
+            } else if (slot instanceof FluidSlot) {
+                renderSlots.add(new FluidGauge((FluidSlot) slot, this));
             }
         }
     }
@@ -54,7 +54,7 @@ public class AsneContainerScreen<T extends AsneMachineContainer> extends Contain
     }
 
     protected ResourceLocation getBackgroundTexture() {
-        return new ResourceLocation(Asne.MOD_ID, "textures/gui/generic_54.png");
+        return AsneConstants.RL.GENERIC_LARGE_CHEST_GUI_TEXTURE;
     }
 
 
@@ -66,11 +66,8 @@ public class AsneContainerScreen<T extends AsneMachineContainer> extends Contain
         int y = (this.height - this.getYSize()) / 2;
         Vec2i corner = getGuiBottomRightCorner();
         this.blit(x, y, 0, 0, corner.getX(), corner.getY());
-        for (int i = 0; i < this.renderSlots.size(); i++) {
-            this.renderSlots.get(i).renderBackground(partialTicks, mouseX, mouseY);
-        }
-        for (int i = 0; i < widgets.size(); i++) {
-            widgets.get(i).renderButton(mouseX, mouseY, partialTicks);
+        for (IAsneScreenPart renderSlot : this.renderSlots) {
+            renderSlot.renderBackground(partialTicks, mouseX, mouseY);
         }
     }
 }

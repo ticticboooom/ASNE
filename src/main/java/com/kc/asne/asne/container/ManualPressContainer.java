@@ -4,22 +4,9 @@ import com.kc.asne.asne.container.slot.manualpress.*;
 import com.kc.asne.asne.init.BlockTypes;
 import com.kc.asne.asne.init.ContainerTypes;
 import com.kc.asne.asne.tileentity.ManualPressTileEntity;
-import com.kc.asne.asne.util.parser.CustomParser;
-import com.kc.asne.asne.util.parser.PressRecipe;
 import com.kc.asne.base.container.AsneMachineContainer;
-import com.kc.asne.base.container.slot.BasicSlot;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.inventory.container.ClickType;
-import net.minecraft.inventory.container.Container;
-import net.minecraft.inventory.container.IContainerListener;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class ManualPressContainer extends AsneMachineContainer<ManualPressTileEntity> {
     public ManualPressOutputSlot outputSlot;

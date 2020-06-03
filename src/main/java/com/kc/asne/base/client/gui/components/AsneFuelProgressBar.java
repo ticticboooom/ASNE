@@ -4,6 +4,7 @@ import com.kc.asne.asne.Asne;
 import com.kc.asne.base.client.gui.AsneContainerScreen;
 import com.kc.asne.base.client.gui.IAsneScreenPart;
 import com.kc.asne.base.container.slot.IBasicProgressSlot;
+import com.kc.asne.base.general.constants.AsneConstants;
 import net.minecraft.util.ResourceLocation;
 
 public class AsneFuelProgressBar implements IAsneScreenPart {
@@ -17,7 +18,7 @@ public class AsneFuelProgressBar implements IAsneScreenPart {
     }
 
     protected ResourceLocation getBarTexture() {
-        return new ResourceLocation(Asne.MOD_ID, "textures/gui/slot_parts.png");
+        return AsneConstants.RL.SLOT_PARTS_TEXTURE;
     }
 
     protected int getProgressHeight() {

@@ -2,6 +2,7 @@ package com.kc.asne.base.client.gui.components;
 
 import com.kc.asne.asne.Asne;
 import com.kc.asne.base.client.gui.IAsneScreenPart;
+import com.kc.asne.base.general.constants.AsneConstants;
 import com.kc.asne.base.math.Vec2i;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.AbstractGui;
@@ -27,7 +28,7 @@ public class AsneScreenSlot implements IAsneScreenPart {
     protected Vec2i getTextureStartCorner(){ return new Vec2i(0, 26);}
 
     protected ResourceLocation getSlotTexture() {
-        return new ResourceLocation(Asne.MOD_ID, "textures/gui/slot_parts.png");
+        return AsneConstants.RL.SLOT_PARTS_TEXTURE;
     }
 
     @Override
