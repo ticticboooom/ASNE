@@ -23,6 +23,9 @@ public abstract class GuiGauge implements IAsneScreenPart {
         return AsneConstants.RL.SLOT_PARTS_TEXTURE;
     }
 
+    protected abstract Vec2i getBackgroundBarStartPos();
+    protected abstract Vec2i getForegroundBarStartPos();
+
     protected abstract float getPercentageUsed();
 
     @Override

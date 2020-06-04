@@ -5,6 +5,8 @@ import com.kc.asne.asne.init.ContainerTypes;
 import com.kc.asne.asne.init.TileEntityTypes;
 import com.kc.asne.asne.util.parser.CustomParser;
 import com.kc.asne.asne.util.parser.models.PressRecipe;
+import com.kc.asne.base.capability.AsneEnergyStorage;
+import com.kc.asne.base.capability.AsneFluidTank;
 import com.kc.asne.base.tileentity.AsneMultiBlockMachineTileEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ItemStackHelper;
@@ -26,11 +28,23 @@ public class ManualPressTileEntity extends AsneMultiBlockMachineTileEntity imple
     private float fuelProgress = 0;
     public ManualPressTileEntity(TileEntityType<?> tileEntityTypeIn) {
         super(tileEntityTypeIn, ContainerTypes.MANUAL_PRESS.get());
+        this.hasEnergyStorage = false;
+        this.hasFluidTank = false;
     }
 
     @Override
     protected IItemHandlerModifiable createHandler() {
         return new InvWrapper(this);
+    }
+
+    @Override
+    protected AsneFluidTank createFluidHandler() {
+        return null;
+    }
+
+    @Override
+    protected AsneEnergyStorage createEnergyHandler() {
+        return null;
     }
 
     public ManualPressTileEntity() {

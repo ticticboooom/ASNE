@@ -2,6 +2,7 @@ package com.kc.asne.base.client.gui;
 
 import com.kc.asne.asne.Asne;
 import com.kc.asne.base.client.gui.components.*;
+import com.kc.asne.base.client.gui.components.gauge.EnergyGauge;
 import com.kc.asne.base.client.gui.components.gauge.FluidGauge;
 import com.kc.asne.base.container.AsneMachineContainer;
 import com.kc.asne.base.container.slot.*;
@@ -45,6 +46,8 @@ public class AsneContainerScreen<T extends AsneMachineContainer> extends Contain
                 renderSlots.add(new AsneFuelProgressBar(slot, this));
             } else if (slot instanceof FluidSlot) {
                 renderSlots.add(new FluidGauge((FluidSlot) slot, this));
+            }  else if (slot instanceof EnergySlot) {
+                renderSlots.add(new EnergyGauge((EnergySlot) slot, this));
             }
         }
     }

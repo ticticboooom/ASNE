@@ -2,6 +2,7 @@ package com.kc.asne.base.tileentity;
 
 import com.kc.asne.asne.capability.fluid.SteamGeneratorWaterTank;
 import com.kc.asne.base.block.AsneBlock;
+import com.kc.asne.base.capability.AsneEnergyStorage;
 import com.kc.asne.base.capability.AsneFluidTank;
 import com.kc.asne.base.container.AsneMachineContainer;
 import net.minecraft.block.Block;
@@ -29,6 +30,8 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
@@ -49,10 +52,18 @@ public abstract class AsneMachineTileEntity extends LockableLootTileEntity {
     protected NonNullList<ItemStack> invContents;
     protected IItemHandlerModifiable items = createHandler();
     protected AsneFluidTank fluids = createFluidHandler();
+    protected AsneEnergyStorage energy = createEnergyHandler();
+
+
+    protected boolean hasFluidTank;
+    protected boolean hasEnergyStorage;
+
 
     protected LazyOptional<IItemHandlerModifiable> itemHandler = LazyOptional.of(() -> items);
     protected LazyOptional<IFluidHandler> fluidHandler = LazyOptional.of(() -> fluids);
+    protected LazyOptional<IEnergyStorage> energyHandler = LazyOptional.of(() -> energy);
     protected int numPlayersUsing;
+
     public AsneMachineTileEntity(final TileEntityType<?> typeIn, final ContainerType<?> containerType) {
         super(typeIn);
         this.containerType = containerType;
@@ -60,12 +71,13 @@ public abstract class AsneMachineTileEntity extends LockableLootTileEntity {
     }
 
 
-
     protected IItemHandlerModifiable createHandler() {
         return new InvWrapper(this);
     }
 
-    protected AsneFluidTank createFluidHandler() { return new SteamGeneratorWaterTank(); }
+    protected abstract AsneFluidTank createFluidHandler();
+
+    protected abstract AsneEnergyStorage createEnergyHandler();
 
     @Override
     public NonNullList<ItemStack> getItems() {
@@ -83,15 +95,6 @@ public abstract class AsneMachineTileEntity extends LockableLootTileEntity {
         return new TranslationTextComponent("container.asne." + getType().getRegistryName().getPath());
     }
 
-    @Override
-    public void read(CompoundNBT compound) {
-        super.read(compound);
-        this.invContents = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        if (!this.checkLootAndRead(compound)) {
-            ItemStackHelper.loadAllItems(compound, this.invContents);
-        }
-        fluids.read(compound);
-    }
 
     private void playSound(SoundEvent sound) {
         double dx = (double) this.pos.getX() + 0.5D;
@@ -153,11 +156,11 @@ public abstract class AsneMachineTileEntity extends LockableLootTileEntity {
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return itemHandler.cast();
         }
-        if (cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+        if (cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY && hasFluidTank) {
             return fluidHandler.cast();
         }
-        if (cap == CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY){
-            return fluidHandler.cast();
+        if (cap == CapabilityEnergy.ENERGY && hasEnergyStorage) {
+            return energyHandler.cast();
         }
         return super.getCapability(cap);
     }
@@ -183,8 +186,11 @@ public abstract class AsneMachineTileEntity extends LockableLootTileEntity {
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return itemHandler.cast();
         }
-        if (cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+        if (cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY && hasFluidTank) {
             return fluidHandler.cast();
+        }
+        if (cap == CapabilityEnergy.ENERGY && hasEnergyStorage) {
+            return energyHandler.cast();
         }
         return super.getCapability(cap, side);
     }
@@ -193,7 +199,7 @@ public abstract class AsneMachineTileEntity extends LockableLootTileEntity {
     @Override
     public void remove() {
         super.remove();
-        if(itemHandler != null) {
+        if (itemHandler != null) {
             itemHandler.invalidate();
         }
     }
@@ -211,6 +217,18 @@ public abstract class AsneMachineTileEntity extends LockableLootTileEntity {
         compound.putInt("y", this.pos.getY());
         compound.putInt("z", this.pos.getZ());
         fluids.write(compound);
+        energy.write(compound);
         return super.write(compound);
+    }
+
+    @Override
+    public void read(CompoundNBT compound) {
+        super.read(compound);
+        this.invContents = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+        if (!this.checkLootAndRead(compound)) {
+            ItemStackHelper.loadAllItems(compound, this.invContents);
+        }
+        fluids.read(compound);
+        energy.read(compound);
     }
 }

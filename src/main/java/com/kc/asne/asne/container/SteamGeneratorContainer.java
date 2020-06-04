@@ -2,6 +2,7 @@ package com.kc.asne.asne.container;
 
 import com.kc.asne.asne.container.slot.manualpress.ManualPressFuelSlot;
 import com.kc.asne.asne.container.slot.manualpress.ManualPressInputSlot;
+import com.kc.asne.asne.container.slot.steamgenerator.SteamGeneratorEnergySlot;
 import com.kc.asne.asne.container.slot.steamgenerator.SteamGeneratorFuelInputSlot;
 import com.kc.asne.asne.container.slot.steamgenerator.SteamGeneratorWaterSlot;
 import com.kc.asne.asne.init.BlockTypes;
@@ -23,6 +24,7 @@ public class SteamGeneratorContainer extends AsneMachineContainer<SteamGenerator
         this.addSlot(inputSlot);
 
         this.progressSlots.add(new SteamGeneratorWaterSlot(tileEntity, 10, 17));
+        this.progressSlots.add(new SteamGeneratorEnergySlot(tileEntity, 100,17));
     }
 
     public SteamGeneratorContainer(final int windowId, final PlayerInventory playerInventory, final PacketBuffer data) {
