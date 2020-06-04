@@ -46,9 +46,17 @@ public class AsneContainerScreen<T extends AsneMachineContainer> extends Contain
                 renderSlots.add(new AsneFuelProgressBar(slot, this));
             } else if (slot instanceof FluidSlot) {
                 renderSlots.add(new FluidGauge((FluidSlot) slot, this));
-            }  else if (slot instanceof EnergySlot) {
+            } else if (slot instanceof EnergySlot) {
                 renderSlots.add(new EnergyGauge((EnergySlot) slot, this));
             }
+        }
+    }
+
+    @Override
+    protected void renderHoveredToolTip(int mouseX, int mouseY) {
+        super.renderHoveredToolTip(mouseX, mouseY);
+        for (final IAsneScreenPart slot : renderSlots) {
+            slot.renderToolTip(mouseX, mouseY);
         }
     }
 

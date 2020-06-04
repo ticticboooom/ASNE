@@ -2,6 +2,7 @@ package com.kc.asne.base.client.gui.components;
 
 import com.kc.asne.asne.Asne;
 import com.kc.asne.base.client.gui.AsneContainerScreen;
+import com.kc.asne.base.client.gui.GuiUtils;
 import com.kc.asne.base.client.gui.IAsneScreenPart;
 import com.kc.asne.base.container.slot.IBasicProgressSlot;
 import com.kc.asne.base.general.constants.AsneConstants;
@@ -33,5 +34,14 @@ public class AsneFuelProgressBar implements IAsneScreenPart {
         this.caller.blit(x + this.slot.getXPosition(), y + this.slot.getYPosition(), 50,0, 14, 13);
         this.caller.blit(x + this.slot.getXPosition(), y + this.slot.getYPosition(), 65, 0, 14, getProgressHeight());
 
+    }
+
+    @Override
+    public void renderToolTip(int mouseX, int mouseY) {
+        int x = (this.caller.width - this.caller.getXSize()) / 2;
+        int y = (this.caller.height - this.caller.getYSize()) / 2;
+        if (GuiUtils.isHoveringOverWH(mouseX, mouseY, x + this.slot.getXPosition(), y + this.slot.getYPosition(), 14, 13)){
+            this.caller.renderTooltip("Fuel Progress", mouseX, mouseY);
+        }
     }
 }

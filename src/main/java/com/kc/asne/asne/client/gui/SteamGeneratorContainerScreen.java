@@ -36,5 +36,6 @@ public class SteamGeneratorContainerScreen extends AsneContainerScreen<SteamGene
         super.drawGuiContainerForegroundLayer(mouseX, mouseY);
         this.font.drawString(this.title.getFormattedText(), 8.0f, 6.0f, 4210752);
         this.font.drawString(this.playerInventory.getDisplayName().getFormattedText(), 8.0f, 73.f, 4210752);
+
     }
 }

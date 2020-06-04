@@ -205,8 +205,12 @@ public abstract class AsneMachineTileEntity extends LockableLootTileEntity {
         if (!this.checkLootAndRead(compound)) {
             ItemStackHelper.saveAllItems(compound, this.invContents);
         }
-        fluids.write(compound);
-        energy.write(compound);
+        if (fluids != null) {
+            fluids.write(compound);
+        }
+        if (energy != null){
+            energy.write(compound);
+        }
         return super.write(compound);
     }
 
@@ -217,7 +221,11 @@ public abstract class AsneMachineTileEntity extends LockableLootTileEntity {
         if (!this.checkLootAndRead(compound)) {
             ItemStackHelper.loadAllItems(compound, this.invContents);
         }
-        fluids.read(compound);
-        energy.read(compound);
+        if (fluids != null) {
+            fluids.read(compound);
+        }
+        if (energy != null){
+            energy.read(compound);
+        }
     }
 }

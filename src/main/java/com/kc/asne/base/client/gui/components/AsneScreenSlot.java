@@ -39,4 +39,9 @@ public class AsneScreenSlot implements IAsneScreenPart {
         Vec2i edgeOffset = getEdgeOffset();
         this.caller.blit(x + this.inventorySlot.xPos - edgeOffset.getX(), (y + this.inventorySlot.yPos) - edgeOffset.getY(), getTextureStartCorner().getX(),getTextureStartCorner().getY(), getTextureEndCorner().getX(), getTextureEndCorner().getY());
     }
+
+    @Override
+    public void renderToolTip(int mouseX, int mouseY) {
+
+    }
 }

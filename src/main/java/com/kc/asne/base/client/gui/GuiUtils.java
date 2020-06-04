@@ -107,4 +107,12 @@ public class GuiUtils {
         RenderSystem.disableAlphaTest();
         RenderSystem.disableBlend();
     }
+
+    public static boolean isHoveringOverWH(int mouseX, int mouseY, int x, int y, int width, int height){
+        return GuiUtils.isHoveringOver(mouseX, mouseY, x, x + width, y , y + height);
+    }
+
+    public static boolean isHoveringOver(int mouseX, int mouseY, int x0, int x1, int y0, int y1){
+        return mouseX > x0 && mouseX < x1 && mouseY > y0 && mouseY < y1;
+    }
 }

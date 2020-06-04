@@ -1,5 +1,6 @@
 package com.kc.asne.base.client.gui.components.gauge;
 
+import com.kc.asne.base.client.gui.GuiUtils;
 import com.kc.asne.base.client.gui.IAsneScreenPart;
 import com.kc.asne.base.client.gui.base.TexturedGuiElement;
 import com.kc.asne.base.general.constants.AsneConstants;
@@ -24,6 +25,7 @@ public abstract class GuiGauge implements IAsneScreenPart {
     }
 
     protected abstract Vec2i getBackgroundBarStartPos();
+
     protected abstract Vec2i getForegroundBarStartPos();
 
     protected abstract float getPercentageUsed();
@@ -33,7 +35,17 @@ public abstract class GuiGauge implements IAsneScreenPart {
         Minecraft.getInstance().getTextureManager().bindTexture(getTextureSheet());
         int x = (this.caller.width - this.caller.getXSize()) / 2;
         int y = (this.caller.height - this.caller.getYSize()) / 2;
-        this.caller.blit(x + this.x, y + this.y, 50, 14, 18, 50);
-        this.caller.blit(x + this.x, y + this.y, 68, 14, 18, (int) (getPercentageUsed() * 50.f));
+        this.caller.blit(x + this.x, y + this.y, getBackgroundBarStartPos().getX(), getBackgroundBarStartPos().getY(), 18, 50);
+        this.caller.blit(x + this.x, y + this.y, getForegroundBarStartPos().getX(), getForegroundBarStartPos().getY(), 18, (int) (getPercentageUsed() * 50.f));
+    }
+
+    @Override
+    public void renderToolTip(int mouseX, int mouseY) {
+        int x = (this.caller.width - this.caller.getXSize()) / 2;
+        int y = (this.caller.height - this.caller.getYSize()) / 2;
+
+        if (GuiUtils.isHoveringOver(mouseX,  mouseY, x + this.x, x+ this.x + 18, y + this.y, y + this.y + 50)) {
+            this.caller.renderTooltip(Float.toString((getPercentageUsed() * 100.f)) + "% Full", x + this.x, y + this.y);
+        }
     }
 }
