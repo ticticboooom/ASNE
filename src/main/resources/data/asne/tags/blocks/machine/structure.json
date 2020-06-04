@@ -2,8 +2,8 @@
   "replace": false,
   "values": [
     "asne:machine_structure",
-    "ASNE:machine_energy_port",
-    "ASNE:machine_fluid_port",
-    "ASNE:machine_item_port"
+    "asne:machine_energy_port",
+    "asne:machine_fluid_port",
+    "asne:machine_item_port"
   ]
 }

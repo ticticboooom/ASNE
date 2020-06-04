@@ -11,6 +11,10 @@ public class AsneEnergyStorage extends EnergyStorage {
         super(capacity, maxReceive, maxExtract, energy);
     }
 
+    public void internalReceiveEnergy(int amount) {
+        this.energy = Math.min(this.capacity, this.energy + amount);
+    }
+
     public CompoundNBT write(CompoundNBT compound) {
         compound.putInt("capacity", this.capacity);
         compound.putInt("energy", this.energy);

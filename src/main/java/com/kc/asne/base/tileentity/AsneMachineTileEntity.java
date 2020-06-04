@@ -57,7 +57,7 @@ public abstract class AsneMachineTileEntity extends LockableLootTileEntity {
 
     protected boolean hasFluidTank;
     protected boolean hasEnergyStorage;
-
+    protected boolean energyOutput = false;
 
     protected LazyOptional<IItemHandlerModifiable> itemHandler = LazyOptional.of(() -> items);
     protected LazyOptional<IFluidHandler> fluidHandler = LazyOptional.of(() -> fluids);
@@ -95,6 +95,9 @@ public abstract class AsneMachineTileEntity extends LockableLootTileEntity {
         return new TranslationTextComponent("container.asne." + getType().getRegistryName().getPath());
     }
 
+    public boolean getEnergyOutput() {
+        return energyOutput;
+    }
 
     private void playSound(SoundEvent sound) {
         double dx = (double) this.pos.getX() + 0.5D;

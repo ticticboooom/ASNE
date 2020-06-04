@@ -31,7 +31,7 @@ import java.util.stream.Collectors;
 public class Asne {
 
     // Directly reference a log4j logger.
-    private static final Logger LOGGER = LogManager.getLogger();
+    public static final Logger LOGGER = LogManager.getLogger();
 
     public Asne() {
         // Register the setup method for modloading

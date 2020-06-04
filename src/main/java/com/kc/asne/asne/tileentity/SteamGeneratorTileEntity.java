@@ -14,10 +14,16 @@ import net.minecraft.nbt.CompoundNBT;
 
 public class SteamGeneratorTileEntity extends AsneMultiBlockMachineTileEntity {
 
+    private float fuelBurnPercentage = 0.f;
+
+    private final int GENERATED_ENERGY_PER_TICK = 80;
+    private static final int COAL_BURN_TIME = 800;
+
     public SteamGeneratorTileEntity() {
         super(TileEntityTypes.STEAM_GENERATOR.get(), ContainerTypes.STEAM_GENERATOR.get());
         this.hasEnergyStorage = true;
         this.hasFluidTank = true;
+        this.energyOutput = true;
     }
 
     @Override
@@ -39,6 +45,15 @@ public class SteamGeneratorTileEntity extends AsneMultiBlockMachineTileEntity {
     @Override
     public void tick() {
         super.tick();
+        if ((invContents.get(0).isEmpty() && fuelBurnPercentage <= 0) || this.fluids.isEmpty()) {
+            return;
+        }
+        if (fuelBurnPercentage <= 0) {
+            invContents.get(0).setCount(invContents.get(0).getCount() - 1);
+            fuelBurnPercentage = 1;
+        }
+        this.energy.internalReceiveEnergy(GENERATED_ENERGY_PER_TICK);
+        fuelBurnPercentage -= 1.f / COAL_BURN_TIME;
 
     }
 
@@ -48,11 +63,15 @@ public class SteamGeneratorTileEntity extends AsneMultiBlockMachineTileEntity {
     }
 
     public float getEnergyContentsPercentage() {
-        return (float)this.energy.getEnergyStored() / this.energy.getMaxEnergyStored();
+        return (float) this.energy.getEnergyStored() / this.energy.getMaxEnergyStored();
+    }
+
+    public float getFuelBurnPercentage() {
+        return this.fuelBurnPercentage;
     }
 
     public float getWaterContentsPercentage() {
-        return (float)this.fluids.getFluidInTank(0).getAmount() / this.fluids.getTankCapacity(0);
+        return (float) this.fluids.getFluidInTank(0).getAmount() / this.fluids.getTankCapacity(0);
     }
 
     @Override
