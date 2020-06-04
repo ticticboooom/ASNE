@@ -149,22 +149,6 @@ public abstract class AsneMachineTileEntity extends LockableLootTileEntity {
         return 0;
     }
 
-
-    @Nonnull
-    @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap) {
-        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
-            return itemHandler.cast();
-        }
-        if (cap == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY && hasFluidTank) {
-            return fluidHandler.cast();
-        }
-        if (cap == CapabilityEnergy.ENERGY && hasEnergyStorage) {
-            return energyHandler.cast();
-        }
-        return super.getCapability(cap);
-    }
-
     public static void swapContents(AsneMachineTileEntity te, AsneMachineTileEntity otherTe) {
         NonNullList<ItemStack> list = te.getItems();
         te.setItems(otherTe.getItems());
@@ -181,8 +165,7 @@ public abstract class AsneMachineTileEntity extends LockableLootTileEntity {
     }
 
 
-    @Override
-    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nonnull Direction side) {
+    public <T> LazyOptional<T> getAvailableCapability(@Nonnull Capability<T> cap) {
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return itemHandler.cast();
         }
@@ -192,7 +175,7 @@ public abstract class AsneMachineTileEntity extends LockableLootTileEntity {
         if (cap == CapabilityEnergy.ENERGY && hasEnergyStorage) {
             return energyHandler.cast();
         }
-        return super.getCapability(cap, side);
+        return super.getCapability(cap);
     }
 
 
@@ -216,6 +199,9 @@ public abstract class AsneMachineTileEntity extends LockableLootTileEntity {
         compound.putInt("x", this.pos.getX());
         compound.putInt("y", this.pos.getY());
         compound.putInt("z", this.pos.getZ());
+        if (!this.checkLootAndRead(compound)) {
+            ItemStackHelper.saveAllItems(compound, this.invContents);
+        }
         fluids.write(compound);
         energy.write(compound);
         return super.write(compound);

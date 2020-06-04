@@ -4,6 +4,10 @@
   "block.asne.machine_structure": "Machine Structure",
   "block.asne.steam_generator_controller": "Steam Generator",
 
+  "block.asne.machine_energy_port":  "Machine Energy Port",
+  "block.asne.machine_fluid_port" :  "Machine Fluid Port",
+  "block.asne.machine_item_port":  "Machine Item Port",
+
   "item.asne.rocketeers_crafting_table": "Rocketeer's Crafting Table",
   "item.asne.rocketeers_hammer": "Rocketeer's Hammer",
   "item.asne.manual_press_controller": "Manual Press Controller",
@@ -17,6 +21,9 @@
   "item.asne.pressed_gold_sheet": "Pressed Gold Sheet",
   "item.asne.wire_cutter": "Wire Cutter",
   "item.asne.gold_wire": "Gold Wire",
+  "item.asne.machine_energy_port":  "Machine Energy Port",
+  "item.asne.machine_fluid_port" :  "Machine Fluid Port",
+  "item.asne.machine_item_port":  "Machine Item Port",
 
   "container.asne.rocketeers_crafting_table": "Rocketeer's Crafting Table",
   "container.asne.manual_press": "Manual Press",

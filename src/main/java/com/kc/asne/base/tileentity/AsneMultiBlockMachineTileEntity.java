@@ -2,7 +2,7 @@ package com.kc.asne.base.tileentity;
 
 import com.kc.asne.asne.net.PacketHandler;
 import com.kc.asne.asne.net.packets.IPacket;
-import com.kc.asne.asne.net.packets.ManualPressTileSyncPacket;
+import com.kc.asne.asne.net.packets.MachineTileSyncPacket;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.nbt.CompoundNBT;
@@ -46,6 +46,6 @@ public abstract class AsneMultiBlockMachineTileEntity extends AsneMachineTileEnt
 
     @Override
     public void tick() {
-        sync(new ManualPressTileSyncPacket(write(new CompoundNBT())));
+        sync(new MachineTileSyncPacket(write(new CompoundNBT())));
     }
 }

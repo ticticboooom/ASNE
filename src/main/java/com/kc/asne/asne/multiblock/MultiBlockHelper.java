@@ -6,6 +6,7 @@ import com.kc.asne.asne.util.parser.models.MultiBlock;
 import com.kc.asne.asne.util.parser.models.MultiBlockFormationBlock;
 import com.kc.asne.asne.util.parser.models.MultiBlocksFormation;
 import com.kc.asne.asne.util.parser.models.Position;
+import com.kc.asne.base.general.constants.AsneConstants;
 import com.kc.asne.base.tileentity.AsneMultiBlockMachineTileEntity;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -55,10 +56,9 @@ public class MultiBlockHelper {
                     BlockState currentBlockState = worldIn.getBlockState(blockPos);
                     String regName = currentBlockState.getBlock().getRegistryName().toString();
                     TileEntity tile = worldIn.getTileEntity(blockPos);
-                    if (tile instanceof  MachineStructureTileEntity){
+                    if (tile instanceof MachineStructureTileEntity) {
                         machineStructures.add((MachineStructureTileEntity) tile);
-                    }
-                    if (!regName.equals(formationBlock.type)) {
+                    } else if (!regName.equals(formationBlock.type)) {
                         canCreate = false;
                         machineStructures.clear();
                         break blockLoop;
@@ -66,9 +66,9 @@ public class MultiBlockHelper {
                 }
             }
         }
-        if (canCreate){
+        if (canCreate) {
             TileEntity te = worldIn.getTileEntity(pos);
-            if (te instanceof AsneMultiBlockMachineTileEntity){
+            if (te instanceof AsneMultiBlockMachineTileEntity) {
                 ((AsneMultiBlockMachineTileEntity) te).canConstruct = true;
                 ((AsneMultiBlockMachineTileEntity) te).isConstructed = true;
             }

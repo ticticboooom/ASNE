@@ -35,6 +35,5 @@ public abstract class GuiGauge implements IAsneScreenPart {
         int y = (this.caller.height - this.caller.getYSize()) / 2;
         this.caller.blit(x + this.x, y + this.y, 50, 14, 18, 50);
         this.caller.blit(x + this.x, y + this.y, 68, 14, 18, (int) (getPercentageUsed() * 50.f));
-        this.caller.drawString(this.caller.getMinecraft().fontRenderer, Float.toString(getPercentageUsed()), x + this.x, y + this.y, 1);
     }
 }

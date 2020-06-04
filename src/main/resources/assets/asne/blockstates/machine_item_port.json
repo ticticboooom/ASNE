@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "asne:block/machine_item_port"}
+  }
+}

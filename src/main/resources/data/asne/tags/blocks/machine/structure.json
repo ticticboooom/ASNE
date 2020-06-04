@@ -1,6 +1,9 @@
 {
   "replace": false,
   "values": [
-    "asne:machine_structure"
+    "asne:machine_structure",
+    "ASNE:machine_energy_port",
+    "ASNE:machine_fluid_port",
+    "ASNE:machine_item_port"
   ]
 }

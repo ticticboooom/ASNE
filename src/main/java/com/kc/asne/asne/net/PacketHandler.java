@@ -1,7 +1,6 @@
 package com.kc.asne.asne.net;
 
-import com.kc.asne.asne.Asne;
-import com.kc.asne.asne.net.packets.ManualPressTileSyncPacket;
+import com.kc.asne.asne.net.packets.MachineTileSyncPacket;
 import com.kc.asne.base.general.constants.AsneConstants;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
@@ -21,7 +20,7 @@ public class PacketHandler {
     public static void register() {
         int disc = 0;
 
-        HANDLER.registerMessage(disc++, ManualPressTileSyncPacket.class, ManualPressTileSyncPacket::encode, ManualPressTileSyncPacket::decode, ManualPressTileSyncPacket.Handler::handle);
+        HANDLER.registerMessage(disc++, MachineTileSyncPacket.class, MachineTileSyncPacket::encode, MachineTileSyncPacket::decode, MachineTileSyncPacket.Handler::handle);
 
     }
 

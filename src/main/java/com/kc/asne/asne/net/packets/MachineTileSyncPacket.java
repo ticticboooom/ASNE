@@ -1,6 +1,5 @@
 package com.kc.asne.asne.net.packets;
 
-import com.kc.asne.asne.tileentity.ManualPressTileEntity;
 import com.kc.asne.base.tileentity.AsneMultiBlockMachineTileEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.CompoundNBT;
@@ -11,23 +10,23 @@ import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
-public class ManualPressTileSyncPacket implements IPacket {
+public class MachineTileSyncPacket implements IPacket {
     private CompoundNBT tag;
 
-    public ManualPressTileSyncPacket(CompoundNBT tag) {
+    public MachineTileSyncPacket(CompoundNBT tag) {
         this.tag = tag;
     }
 
-    public static void encode(ManualPressTileSyncPacket pkt, PacketBuffer buf) {
+    public static void encode(MachineTileSyncPacket pkt, PacketBuffer buf) {
         buf.writeCompoundTag(pkt.tag);
     }
 
-    public static ManualPressTileSyncPacket decode(PacketBuffer buf) {
-        return new ManualPressTileSyncPacket(buf.readCompoundTag());
+    public static MachineTileSyncPacket decode(PacketBuffer buf) {
+        return new MachineTileSyncPacket(buf.readCompoundTag());
     }
 
     public static class Handler {
-        public static void handle(final ManualPressTileSyncPacket pkt, Supplier<NetworkEvent.Context> ctx) {
+        public static void handle(final MachineTileSyncPacket pkt, Supplier<NetworkEvent.Context> ctx) {
             ctx.get().enqueueWork(() -> {
                 CompoundNBT nbt = pkt.tag;
                 int x = nbt.getInt("x");
