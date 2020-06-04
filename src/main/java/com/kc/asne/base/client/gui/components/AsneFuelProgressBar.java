@@ -33,7 +33,6 @@ public class AsneFuelProgressBar implements IAsneScreenPart {
         int y = (this.caller.height - this.caller.getYSize()) / 2;
         this.caller.blit(x + this.slot.getXPosition(), y + this.slot.getYPosition(), 50,0, 14, 13);
         this.caller.blit(x + this.slot.getXPosition(), y + this.slot.getYPosition(), 65, 0, 14, getProgressHeight());
-
     }
 
     @Override

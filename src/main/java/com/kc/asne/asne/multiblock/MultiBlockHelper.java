@@ -56,7 +56,7 @@ public class MultiBlockHelper {
                     BlockState currentBlockState = worldIn.getBlockState(blockPos);
                     String regName = currentBlockState.getBlock().getRegistryName().toString();
                     TileEntity tile = worldIn.getTileEntity(blockPos);
-                    if (tile instanceof MachineStructureTileEntity) {
+                    if (formationBlock.type.equals("asne:machine_structure") && tile instanceof MachineStructureTileEntity) {
                         machineStructures.add((MachineStructureTileEntity) tile);
                     } else if (!regName.equals(formationBlock.type)) {
                         canCreate = false;
@@ -64,6 +64,9 @@ public class MultiBlockHelper {
                         break blockLoop;
                     }
                 }
+            }
+            if (canCreate) {
+                break;
             }
         }
         if (canCreate) {

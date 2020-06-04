@@ -11,7 +11,7 @@
     {
       "blocks": [
         {
-          "type": "asne:machine/structure",
+          "type": "asne:machine_structure",
           "positions": [
             {
               "x": 0,
