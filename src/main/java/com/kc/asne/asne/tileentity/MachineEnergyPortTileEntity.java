@@ -56,19 +56,14 @@ public class MachineEnergyPortTileEntity extends MachineStructureTileEntity impl
                     AsneEnergyStorage energyStorage = (AsneEnergyStorage) this.controllerEnergyStorageHandler.orElse(null);
                     IEnergyStorage handler = tile.getCapability(CapabilityEnergy.ENERGY, direction).orElse(null);
                     if (handler != null && energyStorage != null) {
-                        Asne.LOGGER.debug("#1");
                         int toOffer = energyStorage.extractEnergy(100, false);
-                        Asne.LOGGER.debug("toOffer: " + toOffer);
 
                         int accepted = handler.receiveEnergy(toOffer, false);
-                        Asne.LOGGER.debug("accepted:" + accepted);
                         int remainder = toOffer - accepted;
-                        Asne.LOGGER.debug("remainder:" + remainder);
 
                         if (remainder > 0) {
                             energyStorage.internalReceiveEnergy(remainder);
                         }
-                        Asne.LOGGER.debug("#final");
 
                     }
                 }
