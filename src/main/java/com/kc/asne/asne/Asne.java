@@ -7,6 +7,8 @@ import com.kc.asne.asne.init.TileEntityTypes;
 import com.kc.asne.asne.net.PacketHandler;
 import com.kc.asne.asne.util.parser.CustomParser;
 import com.kc.asne.base.general.constants.AsneConstants;
+import com.kc.asne.planetsapi.PlanetsAPI;
+import com.kc.asne.planetsapi.register.ModPlanetsRegister;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
@@ -47,7 +49,11 @@ public class Asne {
         BlockTypes.BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
         TileEntityTypes.TILE_ENTITIES.register(FMLJavaModLoadingContext.get().getModEventBus());
         ContainerTypes.CONTAINER_TYPES.register(FMLJavaModLoadingContext.get().getModEventBus());
-        // Register ourselves for server and other game events we are interested in
+
+        for (final ModPlanetsRegister register : PlanetsAPI.REGISTERS) {
+            register.getBiomesRegister().register(FMLJavaModLoadingContext.get().getModEventBus());
+            register.getDimensionsRegister().register(FMLJavaModLoadingContext.get().getModEventBus());
+        }
         MinecraftForge.EVENT_BUS.register(this);
 
     }
