@@ -11,6 +11,9 @@ import java.util.function.Supplier;
 
 public abstract class AsnePlanetModDimension extends ModDimension {
 
+
+    public abstract boolean hasSkyLight();
+
     @Override
     public abstract BiFunction<World, DimensionType, ? extends Dimension> getFactory();
 }

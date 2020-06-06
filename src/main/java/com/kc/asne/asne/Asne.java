@@ -53,6 +53,7 @@ public class Asne {
         for (final ModPlanetsRegister register : PlanetsAPI.REGISTERS) {
             register.getBiomesRegister().register(FMLJavaModLoadingContext.get().getModEventBus());
             register.getDimensionsRegister().register(FMLJavaModLoadingContext.get().getModEventBus());
+            register.getSurfaceBuilderRegister().register(FMLJavaModLoadingContext.get().getModEventBus());
         }
         MinecraftForge.EVENT_BUS.register(this);
 

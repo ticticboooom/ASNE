@@ -114,7 +114,7 @@ public abstract class AsneChunkGenerator<SETTINGS extends GenerationSettings> ex
         return adouble;
     }
 
-    private double getNoiseDepthAt(int noiseX, int noiseZ) {
+    protected double getNoiseDepthAt(int noiseX, int noiseZ) {
         double d0 = this.depthNoise.noiseAt(noiseX, noiseZ, true) * 65535.0D / 8000.0D;
         if (d0 < 0.0D) {
             d0 = -d0 * 0.3D;

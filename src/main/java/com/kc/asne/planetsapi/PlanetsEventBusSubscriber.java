@@ -2,6 +2,7 @@ package com.kc.asne.planetsapi;
 
 import com.kc.asne.asne.Asne;
 import com.kc.asne.base.general.constants.AsneConstants;
+import com.kc.asne.planetsapi.base.AsnePlanetModDimension;
 import com.kc.asne.planetsapi.register.ModPlanetsRegister;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.dimension.DimensionType;
@@ -20,7 +21,7 @@ public class PlanetsEventBusSubscriber {
         for (ModPlanetsRegister register : PlanetsAPI.REGISTERS){
             for (final RegistryObject<ModDimension> modDim : register.getDimensionsRegister().getEntries()) {
                 if (DimensionType.byName(modDim.getId()) == null) {
-                    DimensionManager.registerDimension(modDim.getId(), modDim.get(), null, false);
+                    DimensionManager.registerDimension(modDim.getId(), modDim.get(), null, ((AsnePlanetModDimension)modDim.get()).hasSkyLight());
                 }
             }
         }
