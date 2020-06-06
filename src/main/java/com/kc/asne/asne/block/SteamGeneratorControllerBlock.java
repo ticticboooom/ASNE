@@ -30,7 +30,7 @@ import javax.annotation.Nullable;
 
 public class SteamGeneratorControllerBlock extends AsneMultiBlockControllerBlock {
     public SteamGeneratorControllerBlock() {
-        super(Block.Properties.create(Material.IRON));
+        super(Block.Properties.create(Material.IRON).hardnessAndResistance(1.5f, 6f));
         setDefaultState(getDefaultState().with(FACING, Direction.NORTH));
     }
 

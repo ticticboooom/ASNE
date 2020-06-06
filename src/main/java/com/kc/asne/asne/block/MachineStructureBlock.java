@@ -20,7 +20,7 @@ import javax.annotation.Nullable;
 
 public class MachineStructureBlock extends Block {
     public MachineStructureBlock() {
-        super(Block.Properties.create(Material.IRON));
+        super(Block.Properties.create(Material.IRON).hardnessAndResistance(1.5f, 6f));
     }
 
     @Override

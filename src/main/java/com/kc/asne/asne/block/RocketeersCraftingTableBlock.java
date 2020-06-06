@@ -25,7 +25,8 @@ public class RocketeersCraftingTableBlock extends Block {
         super(Block.Properties.create(Material.IRON)
                 .sound(SoundType.METAL)
                 .harvestLevel(2)
-                .harvestTool(ToolType.PICKAXE));
+                .harvestTool(ToolType.PICKAXE)
+        .hardnessAndResistance(5f));
     }
 
     @Override
